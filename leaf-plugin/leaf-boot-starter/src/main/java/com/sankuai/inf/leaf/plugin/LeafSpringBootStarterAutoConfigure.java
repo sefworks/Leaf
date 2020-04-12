@@ -18,27 +18,31 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(LeafSpringBootProperties.class)
 public class LeafSpringBootStarterAutoConfigure {
-    private Logger logger = LoggerFactory.getLogger(LeafSpringBootStarterAutoConfigure.class);
-    @Autowired
-    private LeafSpringBootProperties properties;
 
-    @Bean
-    public SegmentService initLeafSegmentStarter() throws Exception {
-        if (properties != null && properties.getSegment() != null && properties.getSegment().isEnable()) {
-            SegmentService segmentService = new SegmentService(properties.getSegment().getUrl(), properties.getSegment().getUsername(), properties.getSegment().getPassword());
-            return segmentService;
-        }
-        logger.warn("init leaf segment ignore properties is {}", properties);
-        return null;
-    }
+	private Logger logger = LoggerFactory.getLogger(LeafSpringBootStarterAutoConfigure.class);
+	@Autowired private LeafSpringBootProperties properties;
 
-    @Bean
-    public SnowflakeService initLeafSnowflakeStarter() throws InitException {
-        if (properties != null && properties.getSnowflake() != null && properties.getSnowflake().isEnable()) {
-            SnowflakeService snowflakeService = new SnowflakeService(properties.getSnowflake().getAddress(), properties.getSnowflake().getPort());
-            return snowflakeService;
-        }
-        logger.warn("init leaf snowflake ignore properties is {}", properties);
-        return null;
-    }
+	@Bean
+	public SegmentService initLeafSegmentStarter() throws Exception {
+		if (properties != null && properties.getSegment() != null
+				&& properties.getSegment().isEnable()) {
+			SegmentService segmentService = new SegmentService(properties.getJdbc().getUrl(),
+					properties.getJdbc().getUsername(), properties.getJdbc().getPassword());
+			return segmentService;
+		}
+		logger.warn("init leaf segment ignore properties is {}", properties);
+		return null;
+	}
+
+	@Bean
+	public SnowflakeService initLeafSnowflakeStarter() throws InitException {
+		if (properties != null && properties.getSnowflake() != null
+				&& properties.getSnowflake().isEnable()) {
+			SnowflakeService snowflakeService = new SnowflakeService(
+					properties.getSnowflake().getAddress(), properties.getSnowflake().getPort());
+			return snowflakeService;
+		}
+		logger.warn("init leaf snowflake ignore properties is {}", properties);
+		return null;
+	}
 }
