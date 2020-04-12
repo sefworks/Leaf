@@ -6,7 +6,7 @@
 	<groupId>com.sankuai.inf.leaf</groupId>
 	<artifactId>leaf-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.1-RELEASE-sef</version>
+	<version>${leaf.version}</version>
 	<name>Leaf</name>
 	<modules>
 		<module>leaf-core</module>
@@ -36,6 +36,7 @@
 		<url>https://github.com/Meituan-Dianping</url>
 	</organization>
 	<properties>
+		<leaf.version>1.0.1-RELEASE-sef</leaf.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<junit.version>4.12</junit.version>
@@ -65,7 +66,7 @@
 			<dependency>
 				<groupId>com.sankuai.inf.leaf</groupId>
 				<artifactId>leaf-core</artifactId>
-				<version>1.0.1-RELEASE</version>
+				<version>${leaf.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>
